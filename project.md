@@ -1,5 +1,3 @@
----
-
 # 1️⃣ Create Project Folder
 
 ```bash
