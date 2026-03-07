@@ -1,5 +1,3 @@
-Only **project file creation + run commands**.
-
 ---
 
 # 1️⃣ Create Project Folder
