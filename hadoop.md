@@ -1,4 +1,4 @@
-# Latest Apache Hadoop (3.4.x) installation and configuration guide on Ubuntu 24.04** suitable for **single-node setup (for learning/lab).
+# Latest Apache Hadoop (3.4.x) installation and configuration guide on Ubuntu 24.04 suitable for single-node setup (for learning/lab).
 
 ---
 
