@@ -154,7 +154,7 @@ mv hadoop-3.4.0 hadoop
 Move to home
 
 ```
-/home/hadoop/hadoop
+cd /home/hadoop/hadoop
 ```
 
 ---
