@@ -255,6 +255,20 @@ Add
 
 # mapred-site.xml
 
+```
+nano mapred-site.xml
+```
+Paste 
+```
+<configuration>
+
+ <property>
+   <name>mapreduce.framework.name</name>
+   <value>yarn</value>
+ </property>
+
+</configuration>
+```
 Copy template
 
 ```bash
