@@ -384,13 +384,20 @@ Jps
 ```
 http://localhost:9870
 ```
+Example: AzureVM 
+```
+http://52.156.104.215:9870
+```
 
 ### YARN UI
 
 ```
 http://localhost:8088
 ```
-
+Example: AzureVM 
+```
+http://52.156.104.215:8088
+```
 ---
 
 # 15. Test HDFS
