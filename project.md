@@ -45,9 +45,13 @@ status = []
 
 for line in data:
     parts = line.split()
+
+    if len(parts) < 8:
+        continue
+
     ips.append(parts[0])
-    pages.append(parts[6])
-    status.append(parts[8])
+    pages.append(parts[5])
+    status.append(parts[7])
 
 df = pd.DataFrame({
     "IP": ips,
