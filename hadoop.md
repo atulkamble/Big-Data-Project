@@ -484,12 +484,3 @@ chmod 600 ~/.ssh/authorized_keys
 ```
 
 ---
-
-# If you want, I can also give you:
-
-* **Full Automated Hadoop Install Script (one command setup)**
-* **Hadoop + Hive + Spark Setup**
-* **Production Hadoop Architecture**
-* **Big Data Project for Training (Hadoop + MapReduce)**
-
-Just tell me.
