@@ -72,10 +72,18 @@ Save.
 # 4️⃣ Install Python Dependencies
 
 ```bash
+sudo apt update
 sudo apt install python3-pip -y
 pip3 install pandas matplotlib
+pip3 install pandas matplotlib --break-system-packages
+pip3 install pandas
+pip3 install pandas --break-system-packages
 ```
 
+verify installation 
+```
+python3 -c "import pandas; print(pandas.__version__)"
+```
 ---
 
 # 5️⃣ Upload File to HDFS
