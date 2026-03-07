@@ -1,57 +1,483 @@
-# -------------------------------
-# 1. Install Java
-# -------------------------------
+Below is a **simple, latest Apache Hadoop (3.4.x) installation and configuration guide on Ubuntu 24.04** suitable for **single-node setup (for learning/lab)**.
+
+I structured it step-by-step so you can also **use it for DevOps / Big Data training documentation**.
+
+---
+
+# Install and Configure Latest Hadoop on Ubuntu 24.04
+
+## 1. Update System
+
+```bash
 sudo apt update -y
+sudo apt upgrade -y
+```
+
+---
+
+# 2. Install Java (Required for Hadoop)
+
+Hadoop requires **Java 8 or 11**.
+
+Install OpenJDK 11:
+
+```bash
 sudo apt install openjdk-11-jdk -y
+```
 
+Verify:
+
+```bash
 java -version
+```
 
+Example output
 
-# -------------------------------
-# 2. Set JAVA_HOME
-# -------------------------------
-echo 'export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64' >> ~/.bashrc
-echo 'export PATH=$PATH:$JAVA_HOME/bin' >> ~/.bashrc
-source ~/.bashrc
+```
+openjdk version "11.0.x"
+```
 
+Find Java path:
 
-# -------------------------------
-# 3. Install SSH
-# -------------------------------
+```bash
+readlink -f $(which java)
+```
+
+Example:
+
+```
+/usr/lib/jvm/java-11-openjdk-amd64/bin/java
+```
+
+So **JAVA_HOME**
+
+```
+/usr/lib/jvm/java-11-openjdk-amd64
+```
+
+---
+
+# 3. Create Hadoop User (Recommended)
+
+```bash
+sudo adduser hadoop
+```
+
+Add sudo permission
+
+```bash
+sudo usermod -aG sudo hadoop
+```
+
+Switch user
+
+```bash
+su - hadoop
+```
+
+---
+
+# 4. Install SSH (Required)
+
+```bash
 sudo apt install ssh -y
+```
 
+Start service
+
+```bash
 sudo systemctl start ssh
 sudo systemctl enable ssh
+```
 
+---
 
-# -------------------------------
-# 4. Setup Passwordless SSH
-# -------------------------------
-ssh-keygen -t rsa -P "" -f ~/.ssh/id_rsa
+# 5. Configure Passwordless SSH
 
+Generate key
+
+```bash
+ssh-keygen -t rsa
+```
+
+Press **Enter** for all prompts.
+
+Add key
+
+```bash
 cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
+```
 
+Set permissions
+
+```bash
 chmod 600 ~/.ssh/authorized_keys
+```
 
+Test SSH
 
-# Test SSH
+```bash
 ssh localhost
-exit
+```
 
+---
 
-# -------------------------------
-# 5. Download Hadoop
-# -------------------------------
-cd ~
+# 6. Download Latest Hadoop
 
-wget https://downloads.apache.org/hadoop/common/hadoop-3.3.6/hadoop-3.3.6.tar.gz
+Go to official mirror.
 
-tar -xvzf hadoop-3.3.6.tar.gz
+Download Hadoop:
 
-cd hadoop-3.3.6
+```bash
+wget https://downloads.apache.org/hadoop/common/hadoop-3.4.0/hadoop-3.4.0.tar.gz
+```
 
+Extract
 
-# -------------------------------
-# 6. Configure JAVA_HOME in Hadoop
-# -------------------------------
-nano etc/hadoop/hadoop-env.sh
+```bash
+tar -xvzf hadoop-3.4.0.tar.gz
+```
+
+Rename
+
+```bash
+mv hadoop-3.4.0 hadoop
+```
+
+Move to home
+
+```
+/home/hadoop/hadoop
+```
+
+---
+
+# 7. Configure Environment Variables
+
+Edit `.bashrc`
+
+```bash
+nano ~/.bashrc
+```
+
+Add at bottom
+
+```bash
+#HADOOP VARIABLES START
+export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
+export HADOOP_HOME=/home/hadoop/hadoop
+export HADOOP_INSTALL=$HADOOP_HOME
+export HADOOP_MAPRED_HOME=$HADOOP_HOME
+export HADOOP_COMMON_HOME=$HADOOP_HOME
+export HADOOP_HDFS_HOME=$HADOOP_HOME
+export YARN_HOME=$HADOOP_HOME
+export HADOOP_COMMON_LIB_NATIVE_DIR=$HADOOP_HOME/lib/native
+export PATH=$PATH:$HADOOP_HOME/sbin:$HADOOP_HOME/bin
+#HADOOP VARIABLES END
+```
+
+Apply changes
+
+```bash
+source ~/.bashrc
+```
+
+---
+
+# 8. Configure Hadoop Files
+
+Go to config directory
+
+```bash
+cd ~/hadoop/etc/hadoop
+```
+
+---
+
+# core-site.xml
+
+```bash
+nano core-site.xml
+```
+
+Add
+
+```xml
+<configuration>
+
+<property>
+<name>fs.defaultFS</name>
+<value>hdfs://localhost:9000</value>
+</property>
+
+</configuration>
+```
+
+---
+
+# hdfs-site.xml
+
+```bash
+nano hdfs-site.xml
+```
+
+Add
+
+```xml
+<configuration>
+
+<property>
+<name>dfs.replication</name>
+<value>1</value>
+</property>
+
+<property>
+<name>dfs.name.dir</name>
+<value>file:///home/hadoop/hadoopdata/hdfs/namenode</value>
+</property>
+
+<property>
+<name>dfs.data.dir</name>
+<value>file:///home/hadoop/hadoopdata/hdfs/datanode</value>
+</property>
+
+</configuration>
+```
+
+---
+
+# mapred-site.xml
+
+Copy template
+
+```bash
+cp mapred-site.xml.template mapred-site.xml
+```
+
+Edit
+
+```bash
+nano mapred-site.xml
+```
+
+Add
+
+```xml
+<configuration>
+
+<property>
+<name>mapreduce.framework.name</name>
+<value>yarn</value>
+</property>
+
+</configuration>
+```
+
+---
+
+# yarn-site.xml
+
+```bash
+nano yarn-site.xml
+```
+
+Add
+
+```xml
+<configuration>
+
+<property>
+<name>yarn.nodemanager.aux-services</name>
+<value>mapreduce_shuffle</value>
+</property>
+
+</configuration>
+```
+
+---
+
+# 9. Configure JAVA_HOME in Hadoop
+
+Edit
+
+```bash
+nano ~/hadoop/etc/hadoop/hadoop-env.sh
+```
+
+Set
+
+```bash
+export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
+```
+
+---
+
+# 10. Create HDFS Directories
+
+```bash
+mkdir -p ~/hadoopdata/hdfs/namenode
+mkdir -p ~/hadoopdata/hdfs/datanode
+```
+
+---
+
+# 11. Format NameNode
+
+```bash
+hdfs namenode -format
+```
+
+Expected output
+
+```
+Storage directory has been successfully formatted
+```
+
+---
+
+# 12. Start Hadoop
+
+Start HDFS
+
+```bash
+start-dfs.sh
+```
+
+Start YARN
+
+```bash
+start-yarn.sh
+```
+
+---
+
+# 13. Verify Hadoop Services
+
+```bash
+jps
+```
+
+Expected
+
+```
+NameNode
+DataNode
+SecondaryNameNode
+ResourceManager
+NodeManager
+Jps
+```
+
+---
+
+# 14. Access Hadoop Web UI
+
+### NameNode UI
+
+```
+http://localhost:9870
+```
+
+### YARN UI
+
+```
+http://localhost:8088
+```
+
+---
+
+# 15. Test HDFS
+
+Create directory
+
+```bash
+hdfs dfs -mkdir /test
+```
+
+List
+
+```bash
+hdfs dfs -ls /
+```
+
+---
+
+# 16. Stop Hadoop
+
+```bash
+stop-yarn.sh
+stop-dfs.sh
+```
+
+---
+
+# Architecture (Single Node)
+
+```
+                +-------------------+
+                |     NameNode      |
+                +---------+---------+
+                          |
+          +---------------+---------------+
+          |                               |
+     +----v----+                    +-----v-----+
+     | DataNode |                    | DataNode |
+     +----------+                    +----------+
+
+                YARN
+
+     +----------------------+
+     |   ResourceManager    |
+     +----------+-----------+
+                |
+        +-------v-------+
+        |  NodeManager  |
+        +---------------+
+```
+
+---
+
+# Important Hadoop Commands
+
+| Command                | Description      |
+| ---------------------- | ---------------- |
+| `hdfs dfs -ls /`       | list HDFS files  |
+| `hdfs dfs -mkdir /dir` | create directory |
+| `hdfs dfs -put file /` | upload file      |
+| `hdfs dfs -cat file`   | view file        |
+| `hdfs dfs -rm file`    | delete file      |
+
+---
+
+# Common Issues
+
+### JAVA_HOME Error
+
+Fix
+
+```bash
+export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
+```
+
+---
+
+### SSH Permission Denied
+
+Fix
+
+```bash
+ssh-keygen -t rsa
+cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
+chmod 600 ~/.ssh/authorized_keys
+```
+
+---
+
+# If you want, I can also give you:
+
+* **Full Automated Hadoop Install Script (one command setup)**
+* **Hadoop + Hive + Spark Setup**
+* **Production Hadoop Architecture**
+* **Big Data Project for Training (Hadoop + MapReduce)**
+
+Just tell me.
