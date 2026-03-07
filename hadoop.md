@@ -68,6 +68,10 @@ Add sudo permission
 ```bash
 sudo usermod -aG sudo hadoop
 ```
+Set Password 
+```
+sudo passwd hadoop
+```
 
 Switch user
 
