@@ -124,6 +124,9 @@ Test SSH
 ssh localhost
 ```
 
+```
+exit
+```
 ---
 
 # 6. Download Latest Hadoop
