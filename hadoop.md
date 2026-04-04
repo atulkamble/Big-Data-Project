@@ -5,6 +5,23 @@
 * Disk: SSD – 128GB
 * Access: SSH using `.pem` key
 
+## 🔐 NSG Rules (Hadoop – Azure VM)
+
+* **9870** → HDFS NameNode UI
+* **8088** → YARN Resource Manager UI
+
+### 🌐 Access
+
+```
+http://<VM-IP>:9870
+http://<VM-IP>:8088
+```
+
+### ⚙️ Inbound Rules
+
+* Allow TCP **9870**
+* Allow TCP **8088**
+
 ---
 
 ## 🔐 Step 1: Connect to Azure VM
