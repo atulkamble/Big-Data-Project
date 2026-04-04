@@ -207,7 +207,7 @@ cd ~/hadoop/etc/hadoop
 # core-site.xml
 
 ```bash
-nano core-site.xml
+sudo nano core-site.xml
 ```
 
 Add
