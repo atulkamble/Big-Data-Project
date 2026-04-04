@@ -384,11 +384,11 @@ Expected
 
 ```
 NameNode
-DataNode
 SecondaryNameNode
-ResourceManager
-NodeManager
+DataNode
 Jps
+NodeManager
+ResourceManager
 ```
 
 ---
