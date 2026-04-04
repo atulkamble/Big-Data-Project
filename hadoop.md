@@ -447,6 +447,21 @@ List
 hdfs dfs -ls /
 ```
 
+### 1. Create File
+
+```
+echo "Hello Hadoop" > file.txt
+hdfs dfs -put file.txt /
+```
+
+### 2. Read File
+
+```
+hdfs dfs -cat /file.txt
+```
+
+
+
 ---
 
 # 16. Stop Hadoop
