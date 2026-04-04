@@ -1,8 +1,28 @@
-# Latest Apache Hadoop (3.4.x) installation and configuration guide on Ubuntu 24.04 suitable for single-node setup (for learning/lab).
+# Install and Configure Latest Hadoop on Ubuntu 24.04
+## 📌 VM Details
+
+* OS: Ubuntu (Azure VM)
+* Disk: SSD – 128GB
+* Access: SSH using `.pem` key
 
 ---
 
-# Install and Configure Latest Hadoop on Ubuntu 24.04
+## 🔐 Step 1: Connect to Azure VM
+
+```bash
+cd ~/Downloads
+chmod 400 key.pem
+
+ssh -i key.pem atul@20.63.49.28
+```
+
+👉 First time:
+
+```bash
+yes
+```
+
+---
 
 ## 1. Update System
 
