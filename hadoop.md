@@ -228,7 +228,7 @@ Add
 # hdfs-site.xml
 
 ```bash
-nano hdfs-site.xml
+sudo nano hdfs-site.xml
 ```
 
 Add
@@ -267,7 +267,7 @@ cp mapred-site.xml.template mapred-site.xml
 Edit
 
 ```bash
-nano mapred-site.xml
+sudo nano mapred-site.xml
 ```
 
 Add
@@ -288,7 +288,7 @@ Add
 # yarn-site.xml
 
 ```bash
-nano yarn-site.xml
+sudo nano yarn-site.xml
 ```
 
 Add
@@ -311,7 +311,7 @@ Add
 Edit
 
 ```bash
-nano ~/hadoop/etc/hadoop/hadoop-env.sh
+sudo nano ~/hadoop/etc/hadoop/hadoop-env.sh
 ```
 
 Set
