@@ -217,8 +217,12 @@ Go to config directory
 
 ```bash
 cd ~/hadoop/etc/hadoop
+pwd
 ```
-
+It should print >>
+```
+/home/hadoop/hadoop/etc/hadoop
+```
 ---
 
 # core-site.xml
