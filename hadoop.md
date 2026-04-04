@@ -279,14 +279,6 @@ Add
 
 # mapred-site.xml
 
-Copy template (optional)
-
-```bash
-cp mapred-site.xml.template mapred-site.xml
-```
-
-Edit
-
 ```bash
 sudo nano mapred-site.xml
 ```
