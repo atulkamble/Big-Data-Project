@@ -149,7 +149,7 @@ exit
 ```
 ---
 
-# 6. Download Latest Hadoop
+# 6. Download Latest Hadoop (with same hadoop user)
 
 Go to official mirror.
 
