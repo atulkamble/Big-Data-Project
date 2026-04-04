@@ -324,7 +324,7 @@ Add
 Edit
 
 ```bash
-sudo nano ~/hadoop/etc/hadoop/hadoop-env.sh
+sudo nano /home/hadoop/hadoop/etc/hadoop/hadoop-env.sh
 ```
 
 Set
