@@ -187,7 +187,7 @@ Edit `.bashrc`
 nano ~/.bashrc
 ```
 
-Add at bottom
+Add at bottom paste after fi
 
 ```bash
 #HADOOP VARIABLES START
