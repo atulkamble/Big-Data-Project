@@ -174,10 +174,7 @@ mv hadoop-3.4.0 hadoop
 Move to home
 
 ```
-sudo su
-mv hadoop /home/hadoop/hadoop
 cd /home/hadoop/hadoop
-su - hadoop
 ```
 
 ---
