@@ -157,6 +157,7 @@ Move to home
 sudo su
 mv hadoop /home/hadoop/hadoop
 cd /home/hadoop/hadoop
+su - hadoop
 ```
 
 ---
