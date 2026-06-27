@@ -172,6 +172,8 @@ hdfs dfs -ls /logs
 
 ```bash
 hadoop jar $HADOOP_HOME/share/hadoop/mapreduce/hadoop-mapreduce-examples-*.jar wordcount /logs /output
+OR
+hdfs dfs -cat /output/part-r-00000 | grep '^192\.168'
 ```
 
 ---
