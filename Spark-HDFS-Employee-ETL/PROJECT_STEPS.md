@@ -104,3 +104,6 @@ hdfs dfs -rm -r /user/hadoop/output/employee-etl
 
 ## Exercises
 Increase IT salaries by 15%; group by city; find min/max salaries; filter experience >5; partition Parquet by department.
+
+## Historical run verification (November 1, 2026)
+The earlier server script successfully read 12 employees from `hdfs://localhost:9000/user/hadoop/input/employees.csv`, displayed transformations and department summaries, and committed CSV writes to `/user/hadoop/output/employees` and `/user/hadoop/output/department_summary`. The current repository script writes under `/user/hadoop/output/employee-etl` and adds Parquet; this newer version has **not** been verified by the historical log. See [execution verification](EXECUTION_VERIFICATION.md) for full evidence and YARN caveat.
