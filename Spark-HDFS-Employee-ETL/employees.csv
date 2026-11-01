@@ -1,0 +1,13 @@
+emp_id,name,department,salary,city,experience
+101,Rahul,IT,65000,Pune,5
+102,Priya,HR,45000,Mumbai,3
+103,Amit,IT,80000,Pune,7
+104,Neha,Finance,55000,Delhi,4
+105,Rohit,IT,72000,Bangalore,6
+106,Sneha,HR,48000,Pune,4
+107,Vikas,Finance,90000,Mumbai,9
+108,Pooja,IT,60000,Delhi,5
+109,Arjun,Sales,40000,Pune,2
+110,Anjali,Sales,52000,Mumbai,4
+111,Karan,IT,95000,Pune,10
+112,Meera,Finance,68000,Bangalore,6
