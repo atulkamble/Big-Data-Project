@@ -97,3 +97,6 @@ Then run `$SPARK_HOME/sbin/start-history-server.sh`. New applications log events
 - YARN failure: check `yarn node -list` and resource allocation.
 
 References: https://spark.apache.org/docs/3.5.7/ and https://hadoop.apache.org/docs/.
+
+## Verified Ubuntu/Azure lab history
+The supplied server log confirms Spark 3.5.7 on ARM64 with Java 11.0.32.1, running Hadoop HDFS and YARN daemons, plus Spark Master and Worker processes. The Spark application UI was started on 4040 at 07:09:37 and stopped at 07:09:45 after a successful CSV ETL. A later PySpark interactive attempt encountered interrupts/Py4J errors. See [execution verification](EXECUTION_VERIFICATION.md). Starting a Worker process does not prove it registered; check the Master UI's Alive Workers. Submitting `--master yarn` does not guarantee YARN if the script overrides it with `.master('local[*]')`.
