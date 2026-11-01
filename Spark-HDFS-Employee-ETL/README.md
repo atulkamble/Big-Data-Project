@@ -25,3 +25,6 @@ Standalone: `spark-submit --master spark://MASTER_HOST:7077 employee_transform.p
 YARN: `spark-submit --master yarn --deploy-mode client employee_transform.py`.
 
 Security: SSH-tunnel Spark dashboards; do not expose Spark RPC/UI ports publicly.
+
+## Verified server execution
+See [Execution verification](EXECUTION_VERIFICATION.md) for the November 1 terminal history, observed CSV outputs, Spark UI lifecycle and the distinction between the historical local execution and an unverified YARN deployment.
